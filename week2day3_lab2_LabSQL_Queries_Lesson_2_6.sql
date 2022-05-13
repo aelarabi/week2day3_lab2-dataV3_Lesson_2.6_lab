@@ -52,14 +52,10 @@ order by avg(length) asc;
 -- 8) Rank films by length (filter out the rows that have nulls or 0s in length column). 
 -- In your output, only select the columns title, length, and the rank.
 select * from film;
-select length, title from film
+
+select title, length,Rank() Over (order by length) as runtime_rank from film
 WHERE (length IS NOT NULL) AND (length <> '  ')
 group by length;
-
-select title, length,
-Rank() Over (order by length) as runtime_rank
-from film;
-
 
 
 
